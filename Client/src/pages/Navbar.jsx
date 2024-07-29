@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -17,16 +18,15 @@ const Navbar = () => {
               Blog
             </Link>
           </li>
-          <li>
-            <Link to="/register" className="text-white hover:text-gray-300">
-              Register
-            </Link>
-          </li>
-          <li>
-            <Link to="/login" className="text-white hover:text-gray-300">
+          {localStorage.getItem("token") ? <button onClick={() => {
+              localStorage.removeItem("token");
+              window.location.href = "/login";
+            }}>Logout</button> : <><Link to="/login" className="text-white hover:text-gray-300">
               Login
             </Link>
-          </li>
+            <Link to="/register" className="text-white hover:text-gray-300">Signup</Link></>
+            }
+          
         </ul>
       </div>
     </nav>
