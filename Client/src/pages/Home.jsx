@@ -1,30 +1,61 @@
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import profileImage3 from "../assets/Prathu.jpeg";
+import profileImage1 from "../assets/Yug.jpeg";
+import profileImage2 from "../assets/Mittu.jpeg";
+import profileImage4 from "../assets/Raj.jpeg";
+import blogImage from "../assets/Blog.gif";
+
 const Home = () => {
   const members = [
-    { name: "Raj", description: "Project M" },
-    { name: "Yug", description: "Project M" },
-    { name: "Mitansh", description: "Project M" },
-    { name: "Prathmesh", description: "Project M" },
+    {
+      name: "Yug Jain",
+      role: "Role: Full Stack Developer",
+      description:
+        "Yug bridges the gap between frontend and backend development, bringing a holistic approach to our projects. His versatility and problem-solving skills make him a valuable asset to the team.",
+      image: profileImage1,
+    },
+    {
+      name: "Mitansh Chauhan",
+      role: "Role: Backend Developer",
+      description:
+        "Mitansh is the driving force behind our projects, ensuring everything runs smoothly and on schedule. With a keen eye for detail and excellent leadership skills, Mitansh keeps the team motivated and focused on our goals.",
+      image: profileImage2,
+    },
+    {
+      name: "Prathamesh Desai",
+      role: "Role: Backend Developer",
+      description:
+        "Prathamesh specializes in server-side logic, database management, and API development. His expertise in creating robust and scalable backend solutions is essential to our project's success.",
+      image: profileImage3,
+    },
+    {
+      name: "Raj Kamath",
+      role: "Role: Frontend Developer",
+      description:
+        "Raj is our go-to person for creating engaging and responsive user interfaces. His creativity and technical skills ensure a seamless and intuitive user experience. ",
+      image: profileImage4,
+    },
   ];
 
   const slides = [
+    { url: blogImage, alt: "Image 1" },
     {
       url: "https://www.farinasmarketing.com/wp-content/uploads/2019/07/Blogging.png",
-      alt: "Image 1",
-    },
-    {
-      url: "https://tse2.mm.bing.net/th?id=OIP.n-88oToVUblS27fy2pcP-AHaE1&pid=Api&P=0&h=180",
       alt: "Image 2",
     },
     {
-      url: "https://www.readerdigital.com/wp-content/uploads/2018/02/blogging-services.jpg",
+      url: "https://tse2.mm.bing.net/th?id=OIP.n-88oToVUblS27fy2pcP-AHaE1&pid=Api&P=0&h=180",
       alt: "Image 3",
     },
     {
-      url: "https://www.jamesnathan.com/wp-content/uploads/2016/06/shutterstock_381189202.jpg",
+      url: "https://www.readerdigital.com/wp-content/uploads/2018/02/blogging-services.jpg",
       alt: "Image 4",
+    },
+    {
+      url: "https://www.jamesnathan.com/wp-content/uploads/2016/06/shutterstock_381189202.jpg",
+      alt: "Image 5",
     },
   ];
 
@@ -41,25 +72,26 @@ const Home = () => {
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
+
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+
   return (
     <>
-      <div className="flex space-x-8"></div>
-      <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group">
+      <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group bg-[#F7B787]">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-          className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
+          className="w-full h-full rounded-2xl bg-center bg-cover duration-500 shadow-lg"
         ></div>
         <div
-          className="absolute top-[50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
+          className="absolute top-[50%] left-5 text-2xl rounded-full p-2 bg-[#527853] text-white cursor-pointer"
           onClick={prevSlide}
         >
           <BsChevronCompactLeft size={30} />
         </div>
         <div
-          className="absolute top-[50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
+          className="absolute top-[50%] right-5 text-2xl rounded-full p-2 bg-[#527853] text-white cursor-pointer"
           onClick={nextSlide}
         >
           <BsChevronCompactRight size={30} />
@@ -69,32 +101,41 @@ const Home = () => {
             <div
               key={slideIndex}
               onClick={() => goToSlide(slideIndex)}
-              className="text-2xl cursor-pointer"
+              className="text-2xl cursor-pointer text-[#EE7214]"
             >
               <RxDotFilled />
             </div>
           ))}
         </div>
       </div>
-      <div className="flex-grow bg-gray-100 p-4">
-        <p className="text-lg">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni,
-          necessitatibus. Cupiditate eligendi officiis consequuntur commodi?
-          Nemo quisquam eum autem nam facere reiciendis quibusdam, asperiores
-          voluptates, omnis officia harum quis ipsa!
-        </p>
+      <div className="text-center text-xl font-bold mt-8 text-[#EE7214] bg-[#F9E8D9] p-8 rounded-lg shadow-lg">
+        Welcome to our blogging platform! Here, you can share your thoughts,
+        experiences, and stories with a wide audience. Our platform is designed
+        to be user-friendly and accessible, making it easy for you to create and
+        manage your blogs. Whether you're a seasoned writer or just starting
+        out, you'll find the tools you need to express yourself and connect with
+        others. Join our community of bloggers and start your journey today!
       </div>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center mt-8 bg-[#F7B787] py-8">
         {members.map((member, index) => (
           <div
             key={index}
-            className="flex flex-col items-center bg-white rounded-lg shadow-md p-4 m-4"
+            className="flex flex-col items-center bg-[#F9E8D9] rounded-lg shadow-lg p-6 m-4 w-64 transform transition duration-500 hover:scale-105"
           >
-            <div className=" flex flex-">
-              <img src="image_6543.png"></img>
-              <h2 className="text-xl font-semibold">{member.name}</h2>
-              <p className="text-gray-700">{member.description}</p>
-            </div>
+            <img
+              className="w-24 h-22 rounded-full mb-4 border-2 border-[#F7B787] shadow-md"
+              src={member.image}
+              alt={member.name}
+            />
+            <h2 className="text-2xl font-semibold text-center mb-2 text-[#527853]">
+              {member.name}
+            </h2>
+            <p className="text-[#EE7214] text-center font-bold mb-1">
+              {member.role}
+            </p>
+            <p className="text-gray-700 text-center font-bold text-sm leading-relaxed">
+              {member.description}
+            </p>
           </div>
         ))}
       </div>
@@ -103,135 +144,3 @@ const Home = () => {
 };
 
 export default Home;
-// import React, { useState } from "react";
-// import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-// import { RxDotFilled } from "react-icons/rx";
-
-// const Home = () => {
-//   const members = [
-//     { name: "Raj", description: "Project M" },
-//     { name: "Yug", description: "Project M" },
-//     { name: "Mitansh", description: "Project M" },
-//     { name: "Prathmesh", description: "Project M" },
-//   ];
-
-//   const slides = [
-//     {
-//       url: "https://www.farinasmarketing.com/wp-content/uploads/2019/07/Blogging.png",
-//       alt: "Image 1",
-//     },
-//     {
-//       url: "https://tse2.mm.bing.net/th?id=OIP.n-88oToVUblS27fy2pcP-AHaE1&pid=Api&P=0&h=180",
-//       alt: "Image 2",
-//     },
-//     {
-//       url: "https://www.readerdigital.com/wp-content/uploads/2018/02/blogging-services.jpg",
-//       alt: "Image 3",
-//     },
-//     {
-//       url: "https://www.jamesnathan.com/wp-content/uploads/2016/06/shutterstock_381189202.jpg",
-//       alt: "Image 4",
-//     },
-//   ];
-
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   const prevSlide = () => {
-//     const isFirstSlide = currentIndex === 0;
-//     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-//     setCurrentIndex(newIndex);
-//   };
-
-//   const nextSlide = () => {
-//     const isLastSlide = currentIndex === slides.length - 1;
-//     const newIndex = isLastSlide ? 0 : currentIndex + 1;
-//     setCurrentIndex(newIndex);
-//   };
-
-//   const goToSlide = (slideIndex) => {
-//     setCurrentIndex(slideIndex);
-//   };
-
-//   return (
-//     <>
-//       {/* Header Section */}
-//       <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-//         <div className="text-xl font-bold">SQUARESPACE</div>
-//         <nav className="space-x-4">
-//           <a href="#products" className="hover:underline">Products</a>
-//           <a href="#templates" className="hover:underline">Templates</a>
-//           <a href="#resources" className="hover:underline">Resources</a>
-//         </nav>
-//         <div>
-//           <a href="#login" className="mr-4 hover:underline">Log In</a>
-//           <button className="bg-white text-black px-4 py-2 rounded">Get Started</button>
-//         </div>
-//       </header>
-
-//       {/* Main Section */}
-//       <div className="relative flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: 'url(https://example.com/your-background-image.jpg)' }}>
-//         <div className="absolute inset-0 bg-black opacity-50"></div>
-//         <div className="relative z-10 text-center text-white">
-//           <h1 className="text-4xl font-bold">The leader in website design</h1>
-//           <p className="mt-4 text-lg">Stand out online with a professional website, online store, or portfolio. With Squarespace, you can turn any idea into a reality.</p>
-//           <button className="mt-8 bg-white text-black px-6 py-3 rounded">Get Started</button>
-//         </div>
-//       </div>
-
-//       {/* Slider Section */}
-//       <div className="max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group">
-//         <div
-//           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-//           className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
-//         ></div>
-//         <div
-//           className="absolute top-[50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
-//           onClick={prevSlide}
-//         >
-//           <BsChevronCompactLeft size={30} />
-//         </div>
-//         <div
-//           className="absolute top-[50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
-//           onClick={nextSlide}
-//         >
-//           <BsChevronCompactRight size={30} />
-//         </div>
-//         <div className="flex top-4 justify-center py-2">
-//           {slides.map((slide, slideIndex) => (
-//             <div
-//               key={slideIndex}
-//               onClick={() => goToSlide(slideIndex)}
-//               className="text-2xl cursor-pointer"
-//             >
-//               <RxDotFilled />
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* Members Section */}
-//       <div className="flex-grow bg-gray-100 p-4">
-//         <div className="text-center mb-8">
-//           <h2 className="text-3xl font-semibold">Our Team</h2>
-//           <p className="text-gray-700">Meet the amazing team behind our success</p>
-//         </div>
-//         <div className="flex flex-wrap justify-center">
-//           {members.map((member, index) => (
-//             <div
-//               key={index}
-//               className="flex flex-col items-center bg-white rounded-lg shadow-md p-4 m-4"
-//             >
-//               <div className="flex flex-col items-center">
-//                 <img src="https://example.com/member-image.jpg" alt={member.name} className="w-24 h-24 rounded-full mb-4" />
-//                 <h2 className="text-xl font-semibold">{member.name}</h2>
-//                 <p className="text-gray-700">{member.description}</p>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Home;

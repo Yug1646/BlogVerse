@@ -22,12 +22,13 @@ app.use('/auth',AuthRouter)
 
 app.use('/view',ViewRouter)
 
-//Create Todo 
+//Create Blog 
 app.post('/create', async (req, res) => {
   //Grab data from frontend
   const getTitle = req.body.title
   const getDescription = req.body.description
   const getCategory = req.body.category
+  const user = req.body.user
 
 
   //Creating a new obj

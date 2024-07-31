@@ -16,7 +16,7 @@ const signup = async (req, res) => {
     userModel.password = await bcrypt.hash(password, 10);
     await userModel.save();
 
-    res.status(201).json({ message: "Signup Successfullt", success: true });
+    res.status(201).json({ message: "Signup Successfully", success: true, id: userModel._id });
   } catch (err) {
     res.status(500).json({
       message: "Internal Server error",
@@ -58,6 +58,7 @@ const login = async (req, res) => {
         jwtToken,
         email,
         name: user.name,
+        id: user._id,
       });
   } catch (err) {
     res.status(500).json({

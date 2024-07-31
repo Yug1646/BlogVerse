@@ -28,9 +28,10 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name:signupInfo.name,
-          email:signupInfo.email,
-          password:signupInfo.password})
+          name: signupInfo.name,
+          email: signupInfo.email,
+          password: signupInfo.password,
+        }),
       });
 
       if (!response.ok) {
@@ -45,12 +46,8 @@ const Register = () => {
         handleSuccess(message);
         setTimeout(() => {
           navigate("/login");
-        }, 1000)
-      }else if(error){
-        const details = error?.details[0].message
-        handleError(details)
-    }
-      else if(!success){
+        }, 1000);
+      } else {
         handleError(message);
       }
     } catch (err) {
@@ -59,10 +56,12 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-[#F9E8D9] flex flex-col justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <form onSubmit={handleSignup}>
-          <h1 className="text-3xl font-bold text-center mb-6">Sign Up</h1>
+          <h1 className="text-3xl font-bold text-center mb-6 text-[#527853]">
+            Sign Up
+          </h1>
           <div className="space-y-4">
             <div className="relative">
               <FontAwesomeIcon
@@ -76,7 +75,7 @@ const Register = () => {
                 onChange={(e) =>
                   setSignupInfo({ ...signupInfo, name: e.target.value })
                 }
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-blue-300"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-[#527853]"
               />
             </div>
 
@@ -92,7 +91,7 @@ const Register = () => {
                 onChange={(e) =>
                   setSignupInfo({ ...signupInfo, email: e.target.value })
                 }
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-blue-300"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-[#527853]"
               />
             </div>
 
@@ -108,13 +107,13 @@ const Register = () => {
                 onChange={(e) =>
                   setSignupInfo({ ...signupInfo, password: e.target.value })
                 }
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-blue-300"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-[#527853]"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+              className="w-full bg-[#EE7214] text-white py-2 rounded-lg hover:bg-[#d65a2b] transition duration-200"
             >
               Sign Up
             </button>
@@ -122,7 +121,7 @@ const Register = () => {
 
           <div className="text-center mt-4">
             <span className="text-gray-600">Already have an account? </span>
-            <Link to="/login" className="text-blue-500 hover:underline">
+            <Link to="/login" className="text-[#EE7214] hover:underline">
               Login
             </Link>
           </div>

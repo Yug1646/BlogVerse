@@ -1,54 +1,64 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer } from "react-toastify";
+import { handleError, handleSuccess } from "../../utils";
+import "react-toastify/dist/ReactToastify.css"; // Import the toastify CSS
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const handleSubmit =async () => {
-    // const response=await fetch("http://localhost:5000/auth/login",{
-    //   method:"POST",
-    //   headers:{"Content-Type":"application/json",},
-    //   body:JSON.stringify({
-    //     email:loginInfo.email,
-    //     password:loginInfo.password,
-    //   })
-    // });
+  const [logged, setLogged] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const url = "http://localhost:5000/auth/login";
+    try {
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email:loginInfo.email,
-          password:loginInfo.password})
+          email: loginInfo.email,
+          password: loginInfo.password,
+        }),
       });
-    console.log(response);
-    const jsun=await response.json
-    if(jsun)
-    {
-      localStorage.setItem("token",jsun.token);
-      alert(`Login Successfull!`)
-    }
-    else
-    {
-      alert(`Please fill out all the fields`)
-    }
 
-    console.log(response.json); // For demonstration purposes
-  }
-    // Handle form submission logic here
- 
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("id", data.id);        
+
+        handleSuccess("Login Successfully!");
+        setLogged(true);
+        navigate("/"); 
+      } else {
+        handleError(data.message || "Login Failed. Please try again.");
+      }
+    } catch (error) {
+      handleError("An error occurred. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setLogged(true); // Check if the user is already logged in
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-[#F9E8D9] flex flex-col justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <form onSubmit={handleSubmit}>
-          <h1 className="text-3xl font-bold text-center mb-6">Log In</h1>
+          <h1 className="text-3xl font-bold text-center mb-6 text-[#527853]">Log In</h1>
           <div className="space-y-4">
             <div className="relative">
               <FontAwesomeIcon
@@ -62,7 +72,7 @@ const Login = () => {
                 onChange={(e) =>
                   setLoginInfo({ ...loginInfo, email: e.target.value })
                 }
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-blue-300"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-[#527853]"
               />
             </div>
 
@@ -78,13 +88,13 @@ const Login = () => {
                 onChange={(e) =>
                   setLoginInfo({ ...loginInfo, password: e.target.value })
                 }
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-blue-300"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring focus:ring-[#527853]"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+              className="w-full bg-[#EE7214] text-white py-2 rounded-lg hover:bg-[#d65a2b] transition duration-200"
             >
               Log In
             </button>
@@ -92,12 +102,13 @@ const Login = () => {
 
           <div className="text-center mt-4">
             <span className="text-gray-600">Don't have an account? </span>
-            <Link to="/signup" className="text-blue-500 hover:underline">
+            <Link to="/signup" className="text-[#EE7214] hover:underline">
               Signup
             </Link>
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

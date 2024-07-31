@@ -1,19 +1,15 @@
 const ensureAuth = require("../Middlewares/Auth");
-
+const Blog = require("../Models/Blog");
 const router = require("express").Router();
 
-router.get("/", ensureAuth, (req,res) =>{
-    console.log('---- Logged In user details ----',req.user);
-    res.status(200).json([
-        {
-            name : 'yug',
-            age : 18
-        },
-        {
-            name : 'Raj',
-            age : 18
-        }
-    ])
+router.get("/data", (req,res) =>{
+    Blog.find({})
+    .then((data)=>{
+        res.send(data)
+    })
+    .catch(()=>{
+        res.send(error)
+    })
 });
 
 
