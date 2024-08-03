@@ -3,14 +3,42 @@ import axios from "axios";
 
 const View = () => {
   const [list, setList] = useState([]);
+  const [users, setUsers] = useState({}); // Object to store user data
 
+  // Fetch a single user
+  const getUser = async (id) => {
+    try {
+      const res = await axios.get(`http://localhost:5000/auth/getuser/${id}`);
+      return { id, data: res.data }; // Return user ID and data
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return { id, data: null }; // Return null if there is an error
+    }
+  };
+
+  // Fetch all users
+  const getAllUsers = async (userIds) => {
+    const userPromises = userIds.map((id) => getUser(id));
+    const userResults = await Promise.all(userPromises);
+    const userMap = userResults.reduce((acc, { id, data }) => {
+      if (data) acc[id] = data;
+      return acc;
+    }, {});
+    setUsers(userMap);
+  };
+
+  // Fetch blog data and user data
   const getData = async () => {
     try {
       const res = await axios.get("http://localhost:5000/view/data");
-      console.log(res.data);
-      setList(res.data);
+      const blogPosts = res.data;
+      setList(blogPosts);
+
+      // Fetch user data for all users in the blog posts
+      const userIds = [...new Set(blogPosts.map((post) => post.user))]; // Unique user IDs
+      await getAllUsers(userIds);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching blog data:", error);
     }
   };
 
@@ -34,6 +62,11 @@ const View = () => {
                 {value.title}
               </h2>
               <p className="text-[#5A72A0] mb-4">{value.description}</p>
+              {users[value.user] ? (
+                <p className="text-[#5A72A0] mb-4">{users[value.user].data.name}</p>
+              ) : (
+                <p className="text-[#5A72A0] mb-4">Loading user...</p>
+              )}
               <p className="text-[#EE7214] font-semibold">{value.category}</p>
             </div>
           ))}

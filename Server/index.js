@@ -35,7 +35,9 @@ app.post('/create', async (req, res) => {
   const blog = new Blog({
       title: getTitle,
       description: getDescription,
-      category:getCategory
+      category:getCategory,
+      user : req.body.user
+
   })
 
   try {
@@ -46,6 +48,34 @@ app.post('/create', async (req, res) => {
       console.log(err);
   }
 
+})
+
+app.delete('/delete/:id', async (req, res) => {
+  const id = req.params.id
+  await Blog.findByIdAndDelete(id).exec();
+  res.send("Blog Deleted !")
+})
+
+app.put('/update/:id', async (req, res) => {
+
+  const { newTitle, newDescription, newCategory} = req.body
+  const id = req.params.id
+
+  try {
+      const blog = await Blog.findById(id)
+      if (!blog) {
+          return res.status(404).send("Blog not found")
+      }
+      blog.title = newTitle
+      blog.description = newDescription
+      blog.category=newCategory
+      await blog.save()
+      res.status(200).send(blog)
+  }
+  catch (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error')
+  }
 })
 
 app.listen(PORT, () => {

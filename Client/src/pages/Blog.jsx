@@ -5,13 +5,14 @@ const Blog = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-
+  const id = localStorage.getItem('id')
   const AddBlog = async () => {
     try {
       await axios.post("http://localhost:5000/create", {
         title: title,
         description: description,
         category: category,
+        user:id
       });
       alert("Blog Created Successfully");
       window.location.reload();

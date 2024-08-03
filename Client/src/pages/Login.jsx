@@ -40,6 +40,7 @@ const Login = () => {
         handleSuccess("Login Successfully!");
         setLogged(true);
         navigate("/"); 
+        window.location.reload()
       } else {
         handleError(data.message || "Login Failed. Please try again.");
       }
