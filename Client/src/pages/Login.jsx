@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../utils";
-import "react-toastify/dist/ReactToastify.css"; // Import the toastify CSS
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -42,7 +41,7 @@ const Login = () => {
         navigate("/"); 
         window.location.reload()
       } else {
-        handleError(data.message || "Login Failed. Please try again.");
+        handleError("Login Failed. Please try again.");
       }
     } catch (error) {
       handleError("An error occurred. Please try again.");

@@ -101,14 +101,14 @@ const Home = () => {
             <div
               key={slideIndex}
               onClick={() => goToSlide(slideIndex)}
-              className="text-2xl cursor-pointer text-[#EE7214]"
+              className="text-2xl cursor-pointer text-[#ffffff]"
             >
               <RxDotFilled />
             </div>
           ))}
         </div>
       </div>
-      <div className="text-center text-xl font-bold mt-8 text-[#EE7214] bg-[#F9E8D9] p-8 rounded-lg shadow-lg">
+      <div className="text-center text-xl font-bold mt-8 text-[#ffffff] bg-[#F7B787] p-8 rounded-lg shadow-lg">
         Welcome to our blogging platform! Here, you can share your thoughts,
         experiences, and stories with a wide audience. Our platform is designed
         to be user-friendly and accessible, making it easy for you to create and

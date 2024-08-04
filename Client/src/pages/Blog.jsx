@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { handleError, handleSuccess } from "../../utils";
+import { ToastContainer } from "react-toastify";
+
 
 const Blog = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const id = localStorage.getItem('id')
+  const id = localStorage.getItem("id");
   const AddBlog = async () => {
     try {
       await axios.post("http://localhost:5000/create", {
         title: title,
         description: description,
         category: category,
-        user:id
+        user: id,
       });
-      alert("Blog Created Successfully");
-      window.location.reload();
+      handleSuccess("Blog Created Successfully");
+      setTimeout(() => {
+        window.location.reload();
+        }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +82,7 @@ const Blog = () => {
           </div>
         </div>
       </main>
-      
+      <ToastContainer />
     </div>
   );
 };

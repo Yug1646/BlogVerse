@@ -61,13 +61,14 @@ const View = () => {
               <h2 className="text-2xl font-bold text-[#527853] mb-2">
                 {value.title}
               </h2>
+              <p className="text-[#EE7214] font-semibold">{value.category}</p>
+
               <p className="text-[#5A72A0] mb-4">{value.description}</p>
               {users[value.user] ? (
-                <p className="text-[#5A72A0] mb-4">{users[value.user].data.name}</p>
+                <p className="text-[#ffffff] mb-4">Author Name : {users[value.user].data.name}</p>
               ) : (
                 <p className="text-[#5A72A0] mb-4">Loading user...</p>
               )}
-              <p className="text-[#EE7214] font-semibold">{value.category}</p>
             </div>
           ))}
         </div>
