@@ -5,34 +5,30 @@ import profileImage3 from "../assets/Prathu.jpeg";
 import profileImage1 from "../assets/Yug.jpeg";
 import profileImage2 from "../assets/Mittu.jpeg";
 import profileImage4 from "../assets/Raj.jpeg";
-import blogImage from "../assets/Blog.gif";
+import blogImage from "../assets/Blogg.gif";
 
 const Home = () => {
   const members = [
     {
       name: "Yug Jain",
-      role: "Role: Full Stack Developer",
       description:
         "Yug bridges the gap between frontend and backend development, bringing a holistic approach to our projects. His versatility and problem-solving skills make him a valuable asset to the team.",
       image: profileImage1,
     },
     {
       name: "Mitansh Chauhan",
-      role: "Role: Backend Developer",
       description:
         "Mitansh is the driving force behind our projects, ensuring everything runs smoothly and on schedule. With a keen eye for detail and excellent leadership skills, Mitansh keeps the team motivated and focused on our goals.",
       image: profileImage2,
     },
     {
       name: "Prathamesh Desai",
-      role: "Role: Backend Developer",
       description:
         "Prathamesh specializes in server-side logic, database management, and API development. His expertise in creating robust and scalable backend solutions is essential to our project's success.",
       image: profileImage3,
     },
     {
       name: "Raj Kamath",
-      role: "Role: Frontend Developer",
       description:
         "Raj is our go-to person for creating engaging and responsive user interfaces. His creativity and technical skills ensure a seamless and intuitive user experience. ",
       image: profileImage4,
@@ -46,7 +42,7 @@ const Home = () => {
       alt: "Image 2",
     },
     {
-      url: "https://tse2.mm.bing.net/th?id=OIP.n-88oToVUblS27fy2pcP-AHaE1&pid=Api&P=0&h=180",
+      url: "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg",
       alt: "Image 3",
     },
     {
@@ -130,9 +126,6 @@ const Home = () => {
             <h2 className="text-2xl font-semibold text-center mb-2 text-[#527853]">
               {member.name}
             </h2>
-            <p className="text-[#EE7214] text-center font-bold mb-1">
-              {member.role}
-            </p>
             <p className="text-gray-700 text-center font-bold text-sm leading-relaxed">
               {member.description}
             </p>
